@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText, AlertTriangle, CheckCircle, Clock, TrendingUp, ArrowRight } from 'lucide-react';
 import UploadZone from '../components/ui/UploadZone';
 import StatCard from '../components/ui/StatCard';
 import RiskBadge from '../components/ui/RiskBadge';
 import StatusBadge from '../components/ui/StatusBadge';
-import SkeletonRow from '../components/ui/SkeletonRow';
 import { useDocuments, useStats } from '../hooks/useDocuments';
 
 export default function DashboardPage() {
   const { data, loading, refetch } = useDocuments();
   const { stats, loading: statsLoading } = useStats();
-  const [uploading, setUploading] = useState(false);
 
   const recentDocs = data?.documents.slice(0, 5) || [];
 
@@ -36,8 +33,8 @@ export default function DashboardPage() {
     },
     {
       label: 'Processing',
-      value: stats?.byStatus.find(s => s.status === 'Processing')?._count
-           + (stats?.byStatus.find(s => s.status === 'Pending')?._count ?? 0) || 0,
+      value: (stats?.byStatus.find(s => s.status === 'Processing')?._count ?? 0) +
+        (stats?.byStatus.find(s => s.status === 'Pending')?._count ?? 0),
       icon: <Clock size={22} />,
       color: '#f59e0b',
     },
@@ -117,7 +114,7 @@ export default function DashboardPage() {
             <div className="space-y-2">
               {recentDocs.map(doc => (
                 <Link key={doc.id} to={`/documents/${doc.id}`}
-                  className="flex items-center gap-3 p-2.5 rounded-lg transition-all hover:bg-white/[0.03] block">
+                  className="flex items-center gap-3 p-2.5 rounded-lg transition-all hover:bg-white/[0.03]">
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                     style={{ background: 'rgba(30,179,255,0.08)', border: '1px solid rgba(30,179,255,0.15)' }}>
                     <FileText size={14} style={{ color: '#1eb3ff' }} />
