@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  //url      = env("DATABASE_URL")
+}
+
+enum DocumentStatus {
+  Pending
+  Processing
+  Completed
+  Failed
+}
+
+enum RiskLevel {
+  Low
+  Medium
+  High
+}
+
+model Document {
+  id             String         @id @default(uuid())
+  file_name      String
+  blob_url       String
+  status         DocumentStatus @default(Pending)
+  risk_level     RiskLevel?
+  extracted_json Json?
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+
+  @@map("documents")
+}
+
+model User {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  password   String
+  name       String
+  created_at DateTime @default(now())
+
+  @@map("users")
+}

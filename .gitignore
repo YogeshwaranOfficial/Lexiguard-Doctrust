@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.*.local
+# Keep examples
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Prisma
+prisma/migrations/*.sql
+
+# Azure Functions
+azure-functions/dist/
+azure-functions/local.settings.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Test coverage
+coverage/
