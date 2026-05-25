@@ -1,8 +1,10 @@
 # 🛡️ LexiGuard — Cloud-Native Document Risk Analysis Platform
 
-A production-ready cloud-native document analysis platform built using modern Azure services and full-stack web technologies. This project demonstrates real-world software engineering practices including event-driven architecture, asynchronous background processing, secure cloud integrations, scalable storage systems, REST API development, and production-grade deployment workflows.
+A production-ready full-stack document risk analysis platform built using modern cloud-native architecture, scalable backend services, secure authentication workflows, and real-world deployment practices.
 
-The platform allows users to upload contracts and legal documents, process them asynchronously using Azure Functions, classify risk levels automatically, and generate structured clause-level insights through a responsive web interface.
+LexiGuard allows users to upload legal or business documents, perform automated risk analysis, classify document risk levels, and manage document processing workflows through a modern responsive dashboard.
+
+The project demonstrates practical software engineering concepts including REST API development, Prisma ORM workflows, PostgreSQL integration, JWT authentication, asynchronous processing architecture, cloud deployment, and production-grade application structuring.
 
 ---
 
@@ -10,15 +12,31 @@ The platform allows users to upload contracts and legal documents, process them 
 
 ## Frontend Application
 
-Live Application URL
+🚀 Live Frontend:
+
+[LexiGuard Frontend](https://lexiguard-doctrust.vercel.app/)
+
+---
 
 ## Backend API
 
-Backend API Base URL
+⚙️ Live Backend API:
 
-## API Endpoint Example
+[LexiGuard Backend API](https://lexiguard-doctrust-backend.onrender.com)
 
-`/api/documents`
+---
+
+## Health Check Endpoint
+
+```http
+GET /health
+```
+
+Example:
+
+```http
+https://lexiguard-doctrust-backend.onrender.com/health
+```
 
 ---
 
@@ -26,61 +44,77 @@ Backend API Base URL
 
 ## 📄 Document Management
 
-* Upload PDF, DOC, DOCX, and TXT documents
-* Drag & drop file upload support
+* Upload PDF, DOC, DOCX, and TXT files
+* Drag-and-drop upload support
 * Real-time upload progress tracking
-* Document lifecycle tracking
-
----
-
-## ⚡ Asynchronous Processing
-
-* Event-driven architecture using Azure Blob Trigger Functions
-* Background document analysis
-* Automatic processing status updates
-* Scalable cloud-native workflow
+* Document lifecycle management
+* Persistent document metadata storage
 
 ---
 
 ## 🧠 Risk Analysis Engine
 
-* AI-inspired keyword-based document analysis
-* Risk classification:
+* Automated document analysis
+* Risk classification system:
 
   * Low Risk
   * Medium Risk
   * High Risk
-* Clause-level extraction with explanations
-* Confidence scoring support
+* Structured JSON-based analysis results
+* Clause extraction architecture
+* Extensible AI-ready processing pipeline
 
 ---
 
-## 🔄 Real-Time Updates
+## 🔐 Authentication & Security
 
-* Auto-refreshing UI without page reload
-* Processing status polling
-* Dynamic dashboard updates
-
----
-
-## 🔐 Security Features
-
-* JWT authentication
-* Secure password hashing
-* Azure Key Vault integration
-* No hardcoded secrets
-* Environment-based configuration
-* Rate limiting and secure HTTP headers
+* JWT-based authentication
+* Secure password hashing using bcrypt
+* Protected API routes
+* Rate limiting
+* Helmet security middleware
+* Environment variable-based configuration
+* CORS protection
+* Secure HTTP headers
 
 ---
 
-## ☁️ Cloud-Native Azure Integration
+## ⚡ Backend Architecture
 
-* Azure App Service hosting
-* Azure Functions background processing
-* Azure Blob Storage for document storage
-* Azure PostgreSQL database integration
-* Azure Key Vault secret management
+* RESTful API architecture
+* Express middleware architecture
+* Modular route structure
+* Centralized error handling
+* Structured logging using Winston
+* Prisma ORM integration
+* PostgreSQL relational database integration
+
+---
+
+## ☁️ Cloud Deployment
+
+### Current Deployment
+
+| Service  | Platform          |
+| -------- | ----------------- |
+| Frontend | Vercel            |
+| Backend  | Render            |
+| Database | PostgreSQL / Neon |
+
+---
+
+## 🔮 Planned Azure Cloud Integration
+
+The project architecture is intentionally designed to support future Azure cloud-native integration including:
+
+* Azure Blob Storage
+* Azure Functions
+* Azure PostgreSQL
+* Azure Key Vault
+* Event-driven background processing
+* Serverless document workflows
+
+This enables the platform to evolve into a fully scalable enterprise-grade cloud-native document processing system.
 
 ---
 
@@ -94,6 +128,7 @@ Backend API Base URL
 * Tailwind CSS
 * Axios
 * React Router DOM
+* React Hot Toast
 
 ---
 
@@ -105,16 +140,7 @@ Backend API Base URL
 * Prisma ORM
 * JWT Authentication
 * Winston Logger
-
----
-
-## Cloud & Azure Services
-
-* Azure App Service
-* Azure Functions
-* Azure Blob Storage
-* Azure Database for PostgreSQL
-* Azure Key Vault
+* Multer File Upload
 
 ---
 
@@ -122,20 +148,19 @@ Backend API Base URL
 
 * PostgreSQL
 * Prisma ORM
-* JSONB document analysis storage
+* JSON-based analysis storage
 
 ---
 
-## Developer Tools
+## Deployment & DevOps
 
-* Docker
-* Docker Compose
-* Azure Functions Core Tools
-* Git & GitHub
-* npm
-* REST API Testing
-* Environment Variables
+* Vercel
+* Render
+* Neon PostgreSQL
+* GitHub
 * Prisma Migrations
+* Environment Variables
+* REST API Architecture
 
 ---
 
@@ -147,23 +172,13 @@ Frontend (React + Vite + TypeScript)
                 │ HTTPS REST API
                 ▼
 Backend API (Node.js + Express)
-Hosted on Azure App Service
-                │
-                ├──────────────► Azure Blob Storage
-                │                    │
-                │                    │ Blob Upload Event
-                │                    ▼
-                │             Azure Function App
-                │          (Blob Trigger Processing)
-                │                    │
-                ▼                    ▼
-Azure PostgreSQL Database ◄──────────┘
-(Store Metadata + Analysis Results)
-
+Hosted on Render
                 │
                 ▼
-Azure Key Vault
-(Secrets & Connection Strings)
+PostgreSQL Database (Neon)
+                │
+                ▼
+Prisma ORM
 ```
 
 ---
@@ -173,21 +188,19 @@ Azure Key Vault
 ```text
 User uploads document
         ↓
-Backend uploads file to Azure Blob Storage
+Frontend sends multipart/form-data request
         ↓
-Metadata stored in PostgreSQL
-(status = Pending)
+Backend validates request
         ↓
-Azure Blob Trigger Function executes automatically
+Document metadata stored in PostgreSQL
         ↓
-Document processed asynchronously
+Risk analysis processing executes
         ↓
-Risk analysis + metadata extraction completed
+Analysis result stored as JSON
         ↓
-Database updated with results
-(status = Completed)
+Frontend fetches updated document state
         ↓
-Frontend automatically reflects updates
+Dashboard updates automatically
 ```
 
 ---
@@ -202,6 +215,7 @@ lexiguard/
 │   │   ├── components/
 │   │   ├── hooks/
 │   │   ├── pages/
+│   │   ├── services/
 │   │   ├── types/
 │   │   └── utils/
 │   │
@@ -211,6 +225,9 @@ lexiguard/
 │
 ├── backend/
 │   ├── prisma/
+│   │   ├── migrations/
+│   │   └── schema.prisma
+│   │
 │   ├── src/
 │   │   ├── middleware/
 │   │   ├── routes/
@@ -221,24 +238,18 @@ lexiguard/
 │   ├── package.json
 │   └── tsconfig.json
 │
-├── azure-functions/
-│   ├── DocumentAnalyzer/
-│   ├── host.json
-│   └── local.settings.json
-│
-├── docker-compose.yml
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-# ⚙️ Installation & Setup
+# ⚙️ Local Development Setup
 
 # 1️⃣ Clone Repository
 
 ```bash
-git clone https://github.com/your-username/lexiguard.git
+git clone https://github.com/YogeshwaranOfficial/Lexiguard-Doctrust.git
 ```
 
 ---
@@ -251,23 +262,28 @@ git clone https://github.com/your-username/lexiguard.git
 cd backend
 ```
 
+---
+
 ## Install Dependencies
 
 ```bash
 npm install
 ```
 
+---
+
 ## Configure Environment Variables
 
-Create a `.env` file:
+Create a `.env` file inside backend:
 
 ```env
 DATABASE_URL=your_postgresql_connection_string
 JWT_SECRET=your_secure_jwt_secret
-AZURE_STORAGE_CONNECTION_STRING=your_storage_connection_string
-AZURE_STORAGE_CONTAINER_NAME=documents
+FRONTEND_URL=http://localhost:5173
 PORT=3001
 ```
+
+---
 
 ## Generate Prisma Client
 
@@ -275,11 +291,15 @@ PORT=3001
 npx prisma generate
 ```
 
+---
+
 ## Run Database Migrations
 
 ```bash
 npx prisma migrate dev
 ```
+
+---
 
 ## Start Backend
 
@@ -306,19 +326,25 @@ npm start
 cd frontend
 ```
 
+---
+
 ## Install Dependencies
 
 ```bash
 npm install
 ```
 
+---
+
 ## Configure Environment Variables
 
-Create a `.env` file:
+Create a `.env` file inside frontend:
 
 ```env
-VITE_API_URL=http://localhost:3001/api
+VITE_API_URL=http://localhost:3001
 ```
+
+---
 
 ## Start Frontend
 
@@ -328,91 +354,72 @@ npm run dev
 
 ---
 
-# ☁️ Azure Deployment Workflow
+# 🚀 Deployment Configuration
 
-## Azure Services Used
+## Frontend (Vercel)
 
-| Azure Service      | Purpose                     |
-| ------------------ | --------------------------- |
-| Azure App Service  | Host frontend and backend   |
-| Azure Functions    | Background async processing |
-| Azure Blob Storage | File/document storage       |
-| Azure PostgreSQL   | Structured metadata storage |
-| Azure Key Vault    | Secret management           |
+### Environment Variables
 
----
-
-# 🚀 Deployment Steps
-
-## 1. Create Azure Resource Group
-
-```bash
-az group create --name lexiguard-rg --location eastus
+```env
+VITE_API_URL=https://lexiguard-doctrust-backend.onrender.com
 ```
 
 ---
 
-## 2. Configure Azure PostgreSQL
+## Backend (Render)
 
-* Create PostgreSQL Flexible Server
-* Create database
-* Configure firewall rules
-* Store connection string in Key Vault
-
----
-
-## 3. Configure Azure Blob Storage
-
-* Create Storage Account
-* Create Blob Container
-* Configure secure access
-
----
-
-## 4. Configure Azure Key Vault
-
-* Store:
-
-  * Database credentials
-  * Blob connection strings
-  * JWT secrets
-  * API keys
-
----
-
-## 5. Deploy Backend to Azure App Service
+### Build Command
 
 ```bash
-az webapp create
+npm install && npx prisma generate && npx prisma migrate deploy && npm run build
+```
+
+### Start Command
+
+```bash
+npm start
 ```
 
 ---
 
-## 6. Deploy Azure Function App
+# 🗄️ Prisma Migration Workflow
+
+## Generate Prisma Client
 
 ```bash
-func azure functionapp publish
+npx prisma generate
 ```
 
+Purpose:
+
+* Generates Prisma client code from `schema.prisma`
+* Used inside application runtime
+
 ---
 
-## 7. Deploy Frontend
+## Create Migration
 
-Deploy frontend build to Azure App Service or static hosting.
+```bash
+npx prisma migrate dev --name init
+```
+
+Purpose:
+
+* Creates migration SQL files
+* Updates database schema
+* Tracks schema history
 
 ---
 
-# 🔐 Environment Variables Reference
+## Deploy Production Migrations
 
-| Variable                          | Description                          |
-| --------------------------------- | ------------------------------------ |
-| `DATABASE_URL`                    | PostgreSQL connection string         |
-| `JWT_SECRET`                      | JWT signing secret                   |
-| `AZURE_STORAGE_CONNECTION_STRING` | Azure Blob Storage connection string |
-| `AZURE_STORAGE_CONTAINER_NAME`    | Blob container name                  |
-| `AZURE_KEY_VAULT_URL`             | Azure Key Vault URL                  |
-| `PORT`                            | Backend server port                  |
-| `VITE_API_URL`                    | Frontend API URL                     |
+```bash
+npx prisma migrate deploy
+```
+
+Purpose:
+
+* Applies existing migrations safely in production
 
 ---
 
@@ -446,124 +453,101 @@ GET /health
 
 ---
 
-# 🧠 Concepts & Skills Demonstrated
-
-This project demonstrates practical understanding of:
-
----
-
-## Cloud Engineering
-
-* Azure cloud-native architecture
-* Event-driven systems
-* Asynchronous processing
-* Serverless computing
-* Scalable application design
-
----
+# 🧠 Skills Demonstrated
 
 ## Frontend Engineering
 
-* React component architecture
-* State management
-* API integration
-* Responsive UI design
-* Real-time polling
+* React architecture
+* TypeScript integration
+* API communication
+* State handling
+* File upload workflows
+* Responsive UI development
 
 ---
 
 ## Backend Engineering
 
-* REST API development
-* Express middleware architecture
-* Authentication & authorization
+* REST API design
+* Middleware architecture
+* Authentication systems
 * Error handling
-* Logging practices
+* Logging systems
+* File handling
+* Prisma ORM integration
 
 ---
 
 ## Database Engineering
 
-* Relational database modeling
-* Prisma ORM integration
-* PostgreSQL JSONB usage
-* Database migrations
+* PostgreSQL schema design
+* Prisma migrations
+* JSON data storage
+* Relational modeling
+
+---
+
+## Cloud & DevOps
+
+* Production deployment
+* Render deployment workflows
+* Vercel deployment workflows
+* Environment variable management
+* CI-ready project structure
+* Cloud database integration
 
 ---
 
 ## Security Engineering
 
-* Secret management using Azure Key Vault
 * JWT authentication
-* Secure environment configurations
 * Password hashing
-* Managed identity concepts
-
----
-
-## DevOps & Deployment
-
-* Azure deployment workflows
-* Cloud resource configuration
-* Docker-based local development
-* Environment variable management
-* Production deployment handling
-
----
-
-# 📊 Database Schema
-
-```sql
-CREATE TABLE documents (
-  id UUID PRIMARY KEY,
-  file_name TEXT,
-  blob_url TEXT,
-  status TEXT,
-  risk_level TEXT,
-  extracted_json JSONB,
-  created_at TIMESTAMP,
-  updated_at TIMESTAMP
-);
-```
+* Secure headers
+* Rate limiting
+* CORS handling
+* Secure environment configuration
 
 ---
 
 # 🔒 Security Practices
 
-* No hardcoded credentials
-* Secrets stored securely in Azure Key Vault
-* JWT authentication with expiration
+* No hardcoded secrets
+* Environment variable isolation
+* JWT expiration handling
 * Password hashing using bcrypt
-* HTTPS-secured communication
-* Secure cloud configuration
-* Environment-based secrets management
+* Secure API middleware
+* CORS origin validation
+* Rate limiting protection
 
 ---
 
 # 🔮 Future Enhancements
 
-Planned future improvements:
+Planned improvements:
 
+* Azure Blob Storage integration
+* Azure Functions background processing
+* Azure Key Vault integration
 * AI-powered NLP analysis
-* Azure Cognitive Services integration
 * OpenAI integration
 * Real-time WebSocket updates
-* Role-Based Access Control (RBAC)
+* RBAC authorization
 * Docker containerization
-* CI/CD with GitHub Actions
+* GitHub Actions CI/CD
 * Redis caching
-* File versioning
-* Multi-tenant architecture
 * Unit & integration testing
-* Monitoring with Azure Application Insights
+* Monitoring & observability
+* Multi-tenant architecture
 
 ---
 
 # 🤝 Contributing
 
-Contributions, improvements, and suggestions are welcome.
+Contributions and improvements are welcome.
 
+```text
 Fork → Clone → Create Branch → Commit → Push → Pull Request
+```
 
 ---
 
@@ -577,4 +561,10 @@ This project is licensed under the MIT License.
 
 Developed by Yogeshwaran S
 
-GitHub Repository: LexiGuard — Cloud-Native Document Risk Analysis Platform
+## GitHub Repository
+
+[LexiGuard GitHub Repository](https://github.com/YogeshwaranOfficial/Lexiguard-Doctrust)
+
+---
+
+
