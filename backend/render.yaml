@@ -1,0 +1,41 @@
+# ============================================================
+# Render Deployment Configuration — LexiGuard Backend
+# Docs: https://render.com/docs/yaml-spec
+# ============================================================
+services:
+  - type: web
+    name: lexiguard-api
+    runtime: node
+    region: oregon          # Change: ohio | virginia | frankfurt | singapore
+    plan: free              # Change to: starter | standard for production
+
+    # ── Root directory (Render deploys from repo root by default) ──
+    rootDir: backend
+
+    # ── Build & Start ──────────────────────────────────────────────
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+
+    # ── Node version ───────────────────────────────────────────────
+    nodeVersion: "20"
+
+    # ── Health check ───────────────────────────────────────────────
+    healthCheckPath: /health
+
+    # ── Environment Variables ──────────────────────────────────────
+    # Set SECRET values in Render Dashboard → Environment tab
+    # Only non-secret values are listed here
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LOG_LEVEL
+        value: info
+      - key: AZURE_STORAGE_CONTAINER_NAME
+        value: lexiguard-documents
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      # Set these in Render Dashboard (mark as Secret):
+      # DATABASE_URL      ← your Neon connection string
+      # JWT_SECRET        ← random 64-char hex string
+      # FRONTEND_URL      ← your Vercel frontend URL
+      # AZURE_STORAGE_CONNECTION_STRING  ← (optional)

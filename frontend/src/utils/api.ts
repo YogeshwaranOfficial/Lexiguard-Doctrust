@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import type { Document, PaginatedDocuments, StatsOverview, AuthResponse, Filters } from '../types';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL + '/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
