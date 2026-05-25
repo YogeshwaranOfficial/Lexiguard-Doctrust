@@ -17,9 +17,22 @@ const PORT = process.env.PORT || 3001;
 
 // Security middleware
 app.use(helmet());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://lexiguard-doctrust.vercel.app',
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS blocked for origin: ${origin}`));
+    }
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Rate limiting
