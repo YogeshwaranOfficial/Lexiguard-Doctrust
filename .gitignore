@@ -32,8 +32,6 @@ Thumbs.db
 *.njsproj
 *.sln
 
-# Prisma
-prisma/migrations/*.sql
 
 # Azure Functions
 azure-functions/dist/
