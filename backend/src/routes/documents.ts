@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { Router, Request, Response } from 'express';
 import multer from 'multer';
 import { prisma } from '../utils/prisma';
@@ -96,7 +97,7 @@ async function processDocumentAsync(
       data: {
         status: 'Completed',
         risk_level: analysis.risk_level,
-        extracted_json: analysis as unknown as Record<string, unknown>,
+        extracted_json: analysis as unknown as Prisma.InputJsonValue,
       },
     });
 
